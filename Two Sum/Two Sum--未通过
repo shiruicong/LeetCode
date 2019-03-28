@@ -1,0 +1,42 @@
+#include<vector>;
+using namespace std;
+class Solution {
+//在这个代码中，加入了排序，所需的时间复杂度为n*logn+n+n，相比另一个代码（n*n）来说时间复杂度要低一点,但是执行不通过
+//原因可能是因为给定测试用例数量级比较小，反而会比时间复杂度为n*n的代码需要的时间更多，所以总是报时间超时！！！！
+//如果需要处理数量级很大的数据时，采用这种方法，一定会比那个代码好一些
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int len =  nums.size();
+        vector<int>b;
+        vector<int>temp=nums;
+        vector<int>b;
+        int temp1,temp2,m,n;
+        sort(temp.begin(), temp.end());
+        for(int i=0,j=len-1; i<len-1,j>0;  )
+        {
+           if(temp[i]+temp[j]>target)
+                j--;
+            if(temp[i]+temp[j]<target)
+                i++;
+            if(temp[i]+temp[j]==target)
+            { 
+                temp1= temp[i];
+                temp2=temp[j];
+                 break; 
+            }
+        }
+        int flag=0;
+        for(int k=0; k<len-1;)
+        {   
+            if((nums[k]==temp1)||(nums[k]==temp2))
+            {
+                b.push_back(k);
+                k++;
+                flag +=1;
+            }
+           if(flag ==2)
+               break;
+        }
+    return b;
+    } 
+};
