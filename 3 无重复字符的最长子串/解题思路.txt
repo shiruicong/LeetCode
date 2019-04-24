@@ -1,0 +1,16 @@
+第一步：找到所有的无重复字符，python的set可以直接找到
+第二步：初始化一个字典，key就是找到的无重复字符，value全为-1
+第三步：初始化一个left值，记录最左端，初始为-1
+第四步：通过枚举的方式遍历字符串s,得到index和char
+       （1）对于一个char,如果dic[char]==-1，代表char初次出现：
+		dic[char]=index
+		right = index
+                length = right - left
+		max_length = max(max_length, length)
+	（2）对于一个char,如果dic[char]!=-1，代表char不是初次出现：
+		left = max(left, dic[char]) //必须加一个max，否则对于“abba”这个例子就会出错，正确答案是2，不加max就是3
+		dic[char]=index
+		right = index
+                length = right - left
+		max_length = max(max_length, length)
+最后就可以得到最大的子串长度。
