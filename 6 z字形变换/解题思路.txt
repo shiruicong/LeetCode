@@ -1,0 +1,19 @@
+对于生成的每一行字符串，用一个字典来存储，字典的keys=1,2,...numRows,字典的value是每一行的字符
+初始化一个dic = { "0": -1,"1":-1, "2":-1......},value全为-1
+i=0   表示当前的字符应该存储到第几行
+flag = 1   表示是正数还是倒数，1是正数，-1是倒数
+for char in s：   //遍历字符串s
+    如果 dic[i] == -1, dic[i] == char, 否则dic[i] = dic[i] + char   //把char直接拼接在后面
+	i = i+flag
+    如果 i == numRows:
+	flag = -1    //当i达到最大行数，把flag置为-1，之后就要倒数
+    如果 i == 0:
+	flag = -1    //当i达到最小行数，把flag置为1，之后就要正数
+
+
+最后把dic字典中的值取出来，拼接一个完整的字符串，进行输出：
+for value in dic.values():
+    string_sum += value 
+
+
+对于一些特殊情况：如len(s)<numRows， numRows==1,  len(s)==0 || 1，可以直接输出s
